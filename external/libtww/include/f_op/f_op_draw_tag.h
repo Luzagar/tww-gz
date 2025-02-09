@@ -6,13 +6,15 @@
 
 struct MatrixPtr {
     /* 0x000 */ u8 field_0x0[0x6C];
-    /* 0x06C */ Quaternion target;
-    /* 0x07C */ Quaternion pos;
-    /* 0x080 */ f32 zoom;
-    /* 0x084 */ f32 roll;
-    /* 0x088 */ f32 unk88; // I don't know which camera property this is
-    /* 0x16B */ u8 field_0x16B[0xE3];
-    /* 0x16C */ u8 camera_mode;
+    /* 0x06C */ Vec target;
+    /* 0x070 */ f32 field_0x070;
+    /* 0x07C */ Vec pos;
+    /* 0x080 */ f32 field_0x080;
+    /* 0x084 */ f32 zoom;
+    /* 0x088 */ f32 roll;
+    /* 0x08C */ u32 field_0x088;
+    /* 0x16F */ u8 field_0x16B[0xE3];
+    /* 0x170 */ u8 camera_mode;
 };
 
 struct MatrixInfo {

@@ -11,6 +11,7 @@
 #include "rels/include/defines.h"
 #include "libtww/include/d/save/d_save.h"
 #include "utils/hook.h"
+#include "libtww/include/d/d_camera.h"
 #include "libtww/include/f_op/f_op_draw_tag.h"
 
 bool g_commandStates[COMMANDS_AMNT];
@@ -21,8 +22,8 @@ bool g_makar_room = false;
 
 static Vec sSavePlayerPos = {0.0f, 0.0f, 0.0f};
 static int16_t sSavePlayerAngle = 0;
-static Quaternion sSaveCamPos = {0.0f, 0.0f, 0.0f, 0.0f};
-static Quaternion sSaveCamTarget = {0.0f, 0.0f, 0.0f, 0.0f};
+static Vec sSaveCamPos = {0.0f, 0.0f, 0.0f};
+static Vec sSaveCamTarget = {0.0f, 0.0f, 0.0f};
 static f32 sSaveCamZoom = 0.0f;
 static f32 sSaveCamRoll = 0.0f;
 static u8 sSaveCameraMode = 1;
@@ -42,7 +43,7 @@ void GZCmd_storePosition() {
         sSavePlayerPos = dComIfGp_getPlayer(0)->current.pos;
         sSavePlayerAngle = dComIfGp_getPlayer(0)->shape_angle.y;
     }
-    
+
     if (matrixInfo.matrix_info) {
         sSaveCamPos = matrixInfo.matrix_info->pos;
         sSaveCamTarget = matrixInfo.matrix_info->target;
@@ -60,13 +61,10 @@ void GZCmd_loadPosition() {
         l_debug_current_angle.y = sSavePlayerAngle;
         l_debug_shape_angle.y = sSavePlayerAngle;
     }
-    
+
     if (matrixInfo.matrix_info) {
-        matrixInfo.matrix_info->pos = sSaveCamPos;
-        matrixInfo.matrix_info->target = sSaveCamTarget;
-        matrixInfo.matrix_info->zoom = sSaveCamZoom;
-        matrixInfo.matrix_info->roll = sSaveCamRoll;
-        matrixInfo.matrix_info->camera_mode = sSaveCameraMode;
+        s16 angle = dCam_getAngleX(dComIfGp_getCamera(0)); 
+        s16 angle = dCam_getAngleY(dComIfGp_getCamera(0));
     }
 }
 
