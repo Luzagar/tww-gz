@@ -11,7 +11,6 @@
 #include "rels/include/defines.h"
 #include "libtww/include/d/save/d_save.h"
 #include "utils/hook.h"
-#include "libtww/include/d/d_camera.h"
 #include "libtww/include/f_op/f_op_draw_tag.h"
 
 bool g_commandStates[COMMANDS_AMNT];
